@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://playmaker-apps.github.io/sitemap.xml

@@ -1,0 +1,8 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { showcase } from '../../data/site';
+---
+<BaseLayout title="Showcase" description="Nerone Basket Anzio is the real-world WebMAKER pilot in beta testing." path="/showcase/">
+  <section class="page-hero"><div class="shell"><p class="eyebrow">In the field</p><h1>Built with a club.<br />For real club work.</h1><p class="section-lede">The Nerone Basket Anzio pilot is where WebMAKER is being tested against the needs of an active team.</p></div></section>
+  <section class="page-section"><div class="shell"><article class="showcase-panel"><div class="showcase-graphic" role="img" aria-label="Typographic illustration representing the Nerone Basket Anzio pilot; not a screenshot"><span class="big-n">N</span><small>Pilot visual · no club media reproduced</small></div><div class="showcase-content"><span class="badge">{showcase.status}</span><h2>{showcase.name}</h2><p>A real-world pilot for club publishing: content, fixtures, results and statistics. The standalone WebMAKER product is still in development.</p><p>{showcase.attribution}</p>{showcase.siteUrl ? <a class="button button-primary" href={showcase.siteUrl} target="_blank" rel="noopener noreferrer">Visit the public site ↗</a> : <p class="muted">A verified public site URL has not been added yet.</p>}<p><a class="inline-link" href={showcase.codeUrl} target="_blank" rel="noopener noreferrer">Explore the pilot repository ↗</a></p></div></article></div></section>
+</BaseLayout>

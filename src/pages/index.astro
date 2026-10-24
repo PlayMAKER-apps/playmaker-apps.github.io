@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { products, roadmap, site } from '../data/site';
+---
+<BaseLayout title={site.name} description={site.description} path="/">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="shell hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">Open tools for the game ahead</p>
+        <h1 id="hero-title">Every sport.<br />Every level.<br /><span>Your way.</span></h1>
+        <p class="hero-lede">An open-source ecosystem of customizable web, video, and data tools for sports teams of every size.</p>
+        <div class="button-row"><a class="button button-primary" href="/products/">Explore the tools <span aria-hidden="true">↗</span></a><a class="button button-secondary" href={site.orgUrl} target="_blank" rel="noopener noreferrer">Explore GitHub <span aria-hidden="true">↗</span></a></div>
+        <p class="hero-note">Made for grassroots clubs and growing teams</p>
+      </div>
+      <div class="hero-art" role="img" aria-label="Abstract illustration of a sports field, match data and media tools">
+        <div class="art-orbit"></div><div class="art-cross"></div>
+        <div class="art-card art-card-main"><div class="art-card-top"><span>CLUB / MATCHDAY</span><span>LIVE DATA</span></div><div class="art-field"><div class="field-center"></div></div><div class="art-metrics"><span></span><span></span><span></span></div></div>
+        <div class="art-card art-card-side"><div class="side-title">MOMENT / 042</div><div class="side-number">01:24</div><div class="side-small">Event timeline</div></div>
+        <div class="art-card art-card-bottom"><div class="bar-label">HIGHLIGHT SEQUENCE</div><div class="art-bars"><i></i><i></i><i></i><i></i><i></i></div></div>
+        <div class="art-label">One team · more possibilities</div>
+      </div>
+    </div>
+  </section>
+  <div class="signal-strip"><div class="shell signal-inner"><span><b>✳</b> Open-source direction</span><span><b>◎</b> Built around clubs</span><span><b>↗</b> Modular by design</span><span><b>◈</b> No mandatory AI</span></div></div>
+  <section class="section section-products" aria-labelledby="products-title"><div class="shell"><div class="section-top"><div><p class="eyebrow">The toolkit</p><h2 class="section-heading" id="products-title">One ecosystem.<br /><em>Three ways forward.</em></h2></div><p class="section-lede">Make your club visible, understand the moments that matter, and turn footage into stories. Each tool has its own development path.</p></div><div class="product-grid">{products.map((product) => <ProductCard product={product} />)}</div></div></section>
+  <section class="section value-section" aria-labelledby="value-title"><div class="shell value-layout"><div class="value-copy"><p class="eyebrow dark">Why we build</p><h2 class="section-heading" id="value-title">Big ideas for<br /><em>every team.</em></h2><p>Good tools should fit the people doing the work, whether a club has a full media staff or one volunteer after practice.</p></div><div class="value-list"><div class="value-item"><span>01 /</span><div><h3>Start with what you need</h3><p>Use a club website today. Add tagging or video workflows as those tools become available.</p></div></div><div class="value-item"><span>02 /</span><div><h3>Make it yours</h3><p>Adapt content, presentation and workflows to the identity of your sport and club.</p></div></div><div class="value-item"><span>03 /</span><div><h3>Keep control</h3><p>Static publishing and local-first workflows help teams own their material without a mandatory subscription or AI service.</p></div></div></div></div></section>
+  <section class="section flow-section" aria-labelledby="flow-title"><div class="shell flow-layout"><div><p class="eyebrow">Connected in intent</p><h2 class="section-heading" id="flow-title">Your game has<br /><em>more than one story.</em></h2><p class="section-lede">WebMAKER, TagMAKER and VideoMAKER are designed to be useful individually. Shared formats and imports are planned as the tools mature.</p><a class="button button-secondary" href="/ecosystem/">See the ecosystem <span aria-hidden="true">↗</span></a></div><div class="flow-diagram"><div class="flow-node"><strong>WebMAKER</strong><span>Publish club news, fixtures and results.</span></div><div class="flow-arrow" aria-hidden="true">↓</div><div class="flow-node"><strong>TagMAKER</strong><span>Record moments and export structured events. Planned MVP.</span></div><div class="flow-arrow" aria-hidden="true">↓</div><div class="flow-node"><strong>VideoMAKER</strong><span>Create highlights from footage and, later, tagged events. Planned MVP.</span></div><p class="flow-note">Conceptual workflow. End-to-end integration is not released.</p></div></div></section>
+  <section class="section roadmap-section" aria-labelledby="roadmap-title"><div class="shell"><p class="eyebrow">What comes next</p><h2 class="section-heading" id="roadmap-title">Build openly.<br /><em>Ship honestly.</em></h2><p class="section-lede">A sequence of work, not promised release dates.</p><div class="roadmap">{roadmap.map((step) => <div class="roadmap-item"><span>{step.index} / PHASE</span><h3>{step.title}</h3><p>{step.detail}</p></div>)}</div></div></section>
+  <section class="cta-band"><div class="shell cta-inner"><div><h2>Help shape what comes next.</h2><p>Explore the work, share feedback and build with us.</p></div><a class="button" href="/contribute/">Get involved <span aria-hidden="true">↗</span></a></div></section>
+</BaseLayout>
