@@ -1,0 +1,17 @@
+---
+import { showcase } from '../data/site';
+---
+<nav class="tutorial-paths" aria-label="Choose a tutorial path"><a href="#user-guide">For users: explore & use</a><a href="#developer-guide">For contributors & developers</a></nav>
+
+<div class="tutorial-path-heading" id="user-guide"><p class="eyebrow">For users</p><h3>Explore WebMAKER</h3><p>A standalone club installation is not packaged yet. The Nerone Basket Anzio pilot is the current way to see WebMAKER in use.</p></div>
+<ol class="tutorial-simple-list">
+  <li>Open the <a class="inline-link" href={showcase.siteUrl!} target="_blank" rel="noopener noreferrer">live Nerone Basket Anzio site ↗</a> and explore its club news, fixtures, results and statistics.</li>
+  <li>If you use TagMAKER, its <a class="inline-link" href="/products/tagmaker/#user-guide">user guide</a> explains how to import a WebMAKER roster and export per-game player statistics for review in WebMAKER Studio.</li>
+  <li>Return to this page for installation and publishing steps when a general WebMAKER build is available.</li>
+</ol>
+
+<div class="tutorial-path-heading" id="developer-guide"><p class="eyebrow">For contributors & developers</p><h3>Explore the pilot code</h3><p>The linked repository is the Nerone club pilot, not a standalone WebMAKER package. Check its README and current files before making changes.</p></div>
+<div class="developer-guide-grid">
+  <div class="developer-guide-card"><h4>1. Clone or fork the pilot</h4><p>Use the <a class="inline-link" href={showcase.codeUrl} target="_blank" rel="noopener noreferrer">pilot repository ↗</a> to inspect the current site and Studio code. Fork it for experiments, keep changes on a focused branch, then propose a pull request to the appropriate repository.</p><pre><code>git clone https://github.com/nerone-basket/nerone-basket.github.io.git</code></pre></div>
+  <div class="developer-guide-card"><h4>2. Respect shared data</h4><p>Before changing roster or match data, check how the pilot stores and publishes it. TagMAKER reads WebMAKER roster files and exports a player-statistics CSV for Studio review. Preserve IDs and data meaning across those exchanges; use test or synthetic data for examples and keep private club data out of public commits.</p></div>
+</div>

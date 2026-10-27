@@ -1,0 +1,49 @@
+---
+const guide = '/images/tagmaker-guide';
+---
+<div class="tutorial-intro">
+  <p>This guide follows the public TagMAKER 0.1 README. The screenshots show the real app using synthetic teams, players and footage. The source alpha can be run now; the Windows installer is still being prepared.</p>
+  <a class="inline-link" href="https://github.com/PlayMAKER-apps/tagmaker#complete-tutorial" target="_blank" rel="noopener noreferrer">Read the complete repository tutorial ↗</a>
+</div>
+
+<nav class="tutorial-paths" aria-label="Choose a tutorial path"><a href="#user-guide">For users: install & use</a><a href="#developer-guide">For contributors & developers</a></nav>
+
+<div class="tutorial-path-heading" id="user-guide"><p class="eyebrow">For users</p><h3>Install & use TagMAKER</h3><p>The Windows installer is not published yet. If you are comfortable setting up Python, the source installation steps are in the contributor section below. Once TagMAKER is running, follow these steps for your match.</p></div>
+
+<ol class="tutorial-steps">
+  <li class="tutorial-step">
+    <div class="step-copy"><span class="section-kicker">01 / Project</span><h3>Create a match</h3><p>Choose basketball or football, name the match and teams, select the season and a BASIC, STANDARD or ADVANCED tagging level, then save a <code>.tagmaker</code> project. The project is a local SQLite database; video remains in separate files.</p></div>
+    <figure><img src={`${guide}/01-nuovo-progetto.webp`} alt="TagMAKER new-project dialog with sport, teams and detail level" width="600" height="300" loading="lazy" /><figcaption>Create a new match project.</figcaption></figure>
+  </li>
+  <li class="tutorial-step">
+    <div class="step-copy"><span class="section-kicker">02 / Footage</span><h3>Add clips in order</h3><p>Add one recording or several consecutive clips, then arrange them from the start to the end of the match. TagMAKER treats them as one sequential timeline. If a file moves later, use <strong>Relink missing</strong> to reconnect it.</p></div>
+    <figure><img src={`${guide}/02-ordine-clip.webp`} alt="Dialog for ordering match video clips" width="600" height="375" loading="lazy" /><figcaption>Order consecutive recordings.</figcaption></figure>
+  </li>
+  <li class="tutorial-step">
+    <div class="step-copy"><span class="section-kicker">03 / Roster</span><h3>Bring in your squad</h3><p>Use <strong>Import WebMAKER</strong> to read a WebMAKER project roster. Map the team, select called-up players and mark <strong>Our squad</strong>. You can change the call-up list later from <strong>Convocati</strong>; imports do not overwrite the source files.</p></div>
+    <div class="tutorial-figures"><figure><img src={`${guide}/03-import-roster.webp`} alt="WebMAKER roster import and call-up selection" width="850" height="563" loading="lazy" /><figcaption>Import a WebMAKER roster.</figcaption></figure><figure><img src={`${guide}/04-convocati.webp`} alt="TagMAKER called-up players list" width="600" height="475" loading="lazy" /><figcaption>Edit the called-up players.</figcaption></figure></div>
+  </li>
+  <li class="tutorial-step">
+    <div class="step-copy"><span class="section-kicker">04 / Tagging</span><h3>Mark the moments</h3><p>Play or seek through the video and choose an event button or shortcut. For a player event, assign it to a called-up player or the opposing team. The event keeps the video timestamp captured when you selected the tag. Double-click an event in history to edit or remove it.</p></div>
+    <div class="tutorial-figures"><figure><img src={`${guide}/05-tagging.webp`} alt="TagMAKER tagging screen with video, event buttons and history" width="1500" height="988" loading="lazy" /><figcaption>The tagging workspace.</figcaption></figure><figure><img src={`${guide}/06-choose-actor.webp`} alt="Choosing a player or team for a scoring event" width="1500" height="1010" loading="lazy" /><figcaption>Assign an event to a player or team.</figcaption></figure></div>
+  </li>
+  <li class="tutorial-step">
+    <div class="step-copy"><span class="section-kicker">05 / Match context</span><h3>Set starters, clock and score</h3><p>For basketball, select the starting five from called-up players and review the observed box score. Video time is separate from the official game clock: pause at a readable scoreboard, choose <strong>Sync clock</strong>, and resync after seeks or stoppages. Use a score snapshot or correction when the tag log does not contain every scoring play.</p></div>
+    <div class="tutorial-figures"><figure><img src={`${guide}/08-starting-five.webp`} alt="Selecting the starting five" width="600" height="625" loading="lazy" /><figcaption>Select the starting five.</figcaption></figure><figure><img src={`${guide}/07-box-score.webp`} alt="TagMAKER box score with observed points and event counts" width="1500" height="1010" loading="lazy" /><figcaption>Review observed statistics.</figcaption></figure></div>
+  </li>
+  <li class="tutorial-step">
+    <div class="step-copy"><span class="section-kicker">06 / Export</span><h3>Save and share the data</h3><p>Changes autosave to the local project. <strong>Export JSON</strong> creates the versioned 0.1 interchange file, without video bytes. <strong>Export WebMAKER</strong> creates a per-game player-statistics CSV for review and import in WebMAKER Studio. VideoMAKER import is still to be built.</p><p>When moving the project to another computer, copy both the database and the video files, then relink media if paths change.</p></div>
+  </li>
+</ol>
+
+<div class="tutorial-path-heading" id="developer-guide"><p class="eyebrow">For contributors & developers</p><h3>Run, extend & contribute</h3><p>The source alpha is public. Start with the repository README for full setup details, and use the versioned data format when changing exports or integrations.</p></div>
+<div class="developer-guide-grid">
+  <div class="developer-guide-card"><h4>1. Clone & run the source</h4><p>On Windows, install Python 3.11 or newer, then run these PowerShell commands. Video playback also needs a compatible 64-bit <code>libmpv-2.dll</code> obtained separately; choose <strong>Configure libmpv</strong> in the app and select it.</p><pre><code>git clone https://github.com/PlayMAKER-apps/tagmaker.git
+cd tagmaker
+py -3 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -e ".[test]"
+.\.venv\Scripts\tagmaker.exe</code></pre><p><a class="inline-link" href="https://github.com/PlayMAKER-apps/tagmaker#1-install-and-start" target="_blank" rel="noopener noreferrer">Full setup and libmpv notes ↗</a></p></div>
+  <div class="developer-guide-card"><h4>2. Fork & propose changes</h4><p>Fork the <a class="inline-link" href="https://github.com/PlayMAKER-apps/tagmaker" target="_blank" rel="noopener noreferrer">public repository</a>, clone your fork, create a focused branch and open a pull request against the upstream project. Check existing issues first and explain the user workflow your change improves. Keep real club footage, private player data and credentials out of commits; use synthetic fixtures and screenshots.</p></div>
+  <div class="developer-guide-card"><h4>3. Follow the project contracts</h4><p>Run the documented tests and compile check before a pull request. For changes to JSON or integrations, consult the <a class="inline-link" href="https://github.com/PlayMAKER-apps/tagmaker/blob/main/docs/format-0.1.md" target="_blank" rel="noopener noreferrer">TagMAKER 0.1 format</a> and <a class="inline-link" href="https://github.com/PlayMAKER-apps/playmaker-schema" target="_blank" rel="noopener noreferrer">shared schema</a>; update relevant tests and documentation together.</p><pre><code>.\.venv\Scripts\python.exe -m pytest -q
+.\.venv\Scripts\python.exe -m compileall -q app playback tagging storage</code></pre></div>
+</div>

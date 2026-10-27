@@ -9,6 +9,15 @@ export const site = {
 
 export type ProductStatus = 'In development' | 'Alpha' | 'Released';
 
+export type ProductVersion = {
+  version: string;
+  channel: string;
+  availability: string;
+  downloadUrl: string | null;
+  releaseUrl: string | null;
+  changes: string[];
+};
+
 export type Product = {
   name: string;
   slug: string;
@@ -24,6 +33,7 @@ export type Product = {
   repoUrl: string | null;
   docsUrl: string | null;
   releaseUrl: string | null;
+  versions: ProductVersion[];
 };
 
 export const products: Product[] = [
@@ -34,16 +44,24 @@ export const products: Product[] = [
     status: 'In development', statusDetail: 'Pilot beta testing · standalone release pending',
     image: '/images/webmaker.webp', accent: 'lime',
     features: ['Static, customizable club site', 'Three complete themes in the roadmap', 'Desktop Studio for content publishing', 'News, matches, statistics and social graphics'],
-    repoUrl: 'https://github.com/mich1803/nerone-basket-anzio', docsUrl: null, releaseUrl: null
+    repoUrl: 'https://github.com/nerone-basket/nerone-basket.github.io', docsUrl: null, releaseUrl: null,
+    versions: []
   },
   {
     name: 'TagMAKER', slug: 'tagmaker', index: '02', eyebrow: 'The moments that matter',
     tagline: 'Tag every moment of the game.',
-    description: 'A lightweight workflow for manually annotating match video with scores, timestamps and configurable sport profiles. Reusable data export is part of the planned MVP.',
-    status: 'In development', statusDetail: 'Early development · no public release',
+    description: 'An offline desktop app for manually tagging basketball and football video. The 0.1 alpha source includes configurable profiles, match clock and score tools, a versioned JSON export, and WebMAKER roster and statistics exchange.',
+    status: 'Alpha', statusDetail: '0.1 source alpha · Windows installer pending',
     image: '/images/tagmaker.webp', accent: 'cyan',
-    features: ['Manual video event tagging', 'Score and timestamp capture', 'Configurable sport profiles', 'Reusable event data export'],
-    repoUrl: null, docsUrl: null, releaseUrl: null
+    features: ['Manual tagging for basketball and football', 'Score, game clock and video timestamps', 'WebMAKER roster import and statistics export', 'Versioned 0.1 JSON interchange'],
+    repoUrl: 'https://github.com/PlayMAKER-apps/tagmaker',
+    docsUrl: 'https://github.com/PlayMAKER-apps/tagmaker#complete-tutorial',
+    releaseUrl: null,
+    versions: [{
+      version: '0.1.0', channel: 'Alpha source', availability: 'Source code available; Windows installer in preparation',
+      downloadUrl: null, releaseUrl: null,
+      changes: ['Offline basketball and football video tagging with sequential clips and configurable sport profiles.', 'SQLite projects with autosave, match clock and score corrections, and JSON 0.1 export.', 'WebMAKER roster import and per-game player-statistics CSV export.']
+    }]
   },
   {
     name: 'VideoMAKER', slug: 'videomaker', index: '03', eyebrow: 'From match to moment',
@@ -52,22 +70,25 @@ export const products: Product[] = [
     status: 'In development', statusDetail: 'Early development · no public release',
     image: '/images/videomaker.webp', accent: 'orange',
     features: ['Guided full-game editing', 'Dynamic overlays', 'Horizontal and vertical clips', 'Planned TagMAKER data import'],
-    repoUrl: null, docsUrl: null, releaseUrl: null
+    repoUrl: 'https://github.com/PlayMAKER-apps/videomaker', docsUrl: null, releaseUrl: null,
+    versions: []
   }
 ];
 
 export const roadmap = [
   { index: '01', title: 'Nerone pilot + WebMAKER Studio', detail: 'Pilot work and desktop publishing prototype.' },
   { index: '02', title: 'Three WebMAKER themes', detail: 'Reusable layouts for different clubs and sports.' },
-  { index: '03', title: 'TagMAKER MVP', detail: 'Manual event capture and reusable exports.' },
-  { index: '04', title: 'Data interoperability', detail: 'Documented paths between tools as formats mature.' },
-  { index: '05', title: 'VideoMAKER MVP', detail: 'Guided editing and offline export.' }
+  { index: '03', title: 'TagMAKER alpha → MVP', detail: 'Source alpha published; Windows installer and full-match validation remain.' },
+  { index: '04', title: 'Data interoperability', detail: 'Build on the 0.1 TagMAKER contract and complete VideoMAKER import.' },
+  { index: '05', title: 'VideoMAKER MVP', detail: 'Guided editing and offline export.' },
+  { index: '06', title: 'Mobile apps', detail: 'Bring useful PlayMAKER workflows to phones and tablets.' },
+  { index: '07', title: 'Optional AI assistance', detail: 'Explore automated tagging and editing while keeping manual workflows available.' }
 ];
 
 export const showcase = {
   name: 'Nerone Basket Anzio',
   status: 'WebMAKER pilot · beta testing',
-  siteUrl: null as string | null,
-  codeUrl: 'https://github.com/mich1803/nerone-basket-anzio',
+  siteUrl: 'https://nerone-basket.github.io/' as string | null,
+  codeUrl: 'https://github.com/nerone-basket/nerone-basket.github.io',
   attribution: 'Pilot identified in the PlayMAKER organization profile. Club images and screenshots are not reproduced here.'
 };

@@ -18,8 +18,9 @@ npm run preview
 
 ## Edit content
 
-- `src/data/site.ts`: organization URL, product descriptions, status, repository/documentation/release links, roadmap and showcase URL. Keep unavailable links `null` and update statuses only when a release is real.
+- `src/data/site.ts`: organization URL, product descriptions, status, repository/documentation/release links, version history, roadmap and showcase URL. Keep unavailable installer links `null` and update statuses only when a release is real. Add one `versions` entry per published version; set `downloadUrl` only to a verified Windows `.exe` release asset and `releaseUrl` to that version's release notes.
 - `src/pages/`: page copy and guides.
+- `src/components/*Tutorial.astro`: keep two clearly named paths on every product page: **For users** (installation status and everyday use) and **For contributors & developers** (repository, clone/fork workflow, project data contracts and contribution checks). Do not send a nontechnical visitor through Git commands as the only installation path.
 - `src/styles/global.css`: layout and visual system.
 - `public/images/`: artwork sourced from the organization profile. Product images are resized WebP derivatives. Replace or supplement with approved screenshots when available, with credit and meaningful alt text.
 
@@ -37,6 +38,6 @@ No deployment is performed by local build commands.
 
 ## Content and media limits
 
-The WebMAKER link is pilot code, not a standalone release. TagMAKER and VideoMAKER have no public release links configured. Nerone Basket Anzio is identified in the PlayMAKER organization profile as a pilot; a public site URL and approved screenshot are not configured. Add those only after verification and permission to use the media. Individual repository licenses govern code reuse; this website does not grant rights to club media or product artwork.
+The WebMAKER link is pilot code, not a standalone release. Nerone Basket Anzio's public site is linked as the verified pilot; club screenshots are not reproduced. TagMAKER 0.1 alpha source and tutorial are public, but GitHub has no release entry or Windows installer asset yet. VideoMAKER has no application release. Individual repository licenses govern code reuse; this website does not grant rights to club media or product artwork.
 
 Before public launch, verify the PlayMAKER name, handle and brand rights, review organization policy and add any project-specific contribution and conduct links that are actually available.
