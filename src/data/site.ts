@@ -40,12 +40,17 @@ export const products: Product[] = [
   {
     name: 'WebMAKER', slug: 'webmaker', index: '01', eyebrow: 'Your digital home',
     tagline: 'Build and manage your club website.',
-    description: 'A customizable static site for club stories, fixtures, results and statistics, with a desktop publishing studio. A Nerone Basket Anzio pilot is in beta testing; a standalone release is not available yet.',
-    status: 'In development', statusDetail: 'Pilot beta testing · standalone release pending',
+    description: 'A customizable static club site with three themes, sample data, GitHub Pages publishing and a Windows desktop Studio. Version 0.1.0 is the first public release.',
+    status: 'Alpha', statusDetail: '0.1.0 first public release',
     image: '/images/webmaker.webp', accent: 'lime',
-    features: ['Static, customizable club site', 'Three complete themes in the roadmap', 'Desktop Studio for content publishing', 'News, matches, statistics and social graphics'],
-    repoUrl: 'https://github.com/nerone-basket/nerone-basket.github.io', docsUrl: null, releaseUrl: null,
-    versions: []
+    features: ['Static club site with Bold, Classic and Dynamic themes', 'Desktop Studio for local editing and Git publishing', 'News, matches, rosters and statistics', 'Basketball and football profiles with shared data paths'],
+    repoUrl: 'https://github.com/PlayMAKER-apps/webmaker', docsUrl: 'https://github.com/PlayMAKER-apps/webmaker#guida-per-luso', releaseUrl: 'https://github.com/PlayMAKER-apps/webmaker/releases/tag/v0.1.0',
+    versions: [{
+      version: '0.1.0', channel: 'First public release',
+      availability: 'Source code and Windows installer available; the installer is unsigned.',
+      downloadUrl: 'https://github.com/PlayMAKER-apps/webmaker/releases/download/v0.1.0/WebMAKER.Studio_0.1.0_x64-setup.exe', releaseUrl: 'https://github.com/PlayMAKER-apps/webmaker/releases/tag/v0.1.0',
+      changes: ['Independent static site with three layouts and a synthetic club starter.', 'Studio can open club projects, change the theme and prepare guarded Git publishing.', 'Versioned club configuration and sport profiles with TagMAKER-compatible roster paths.']
+    }]
   },
   {
     name: 'TagMAKER', slug: 'tagmaker', index: '02', eyebrow: 'The moments that matter',
@@ -77,7 +82,7 @@ export const products: Product[] = [
 
 export const roadmap = [
   { index: '01', title: 'Nerone pilot + WebMAKER Studio', detail: 'Pilot work and desktop publishing prototype.' },
-  { index: '02', title: 'Three WebMAKER themes', detail: 'Reusable layouts for different clubs and sports.' },
+  { index: '02', title: 'WebMAKER 0.1 public release', detail: 'Three reusable layouts, public club starter and Windows Studio installer.' },
   { index: '03', title: 'TagMAKER alpha → MVP', detail: 'Source alpha published; Windows installer and full-match validation remain.' },
   { index: '04', title: 'Data interoperability', detail: 'Build on the 0.1 TagMAKER contract and complete VideoMAKER import.' },
   { index: '05', title: 'VideoMAKER MVP', detail: 'Guided editing and offline export.' },

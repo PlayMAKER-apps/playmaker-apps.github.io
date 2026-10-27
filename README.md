@@ -38,6 +38,6 @@ No deployment is performed by local build commands.
 
 ## Content and media limits
 
-The WebMAKER link is pilot code, not a standalone release. Nerone Basket Anzio's public site is linked as the verified pilot; club screenshots are not reproduced. TagMAKER 0.1 alpha source and tutorial are public, but GitHub has no release entry or Windows installer asset yet. VideoMAKER has no application release. Individual repository licenses govern code reuse; this website does not grant rights to club media or product artwork.
+WebMAKER 0.1.0 is published in the [WebMAKER repository](https://github.com/PlayMAKER-apps/webmaker) with a [Windows Studio installer](https://github.com/PlayMAKER-apps/webmaker/releases/tag/v0.1.0). The illustrated guide uses original SVG diagrams. Nerone Basket Anzio remains the linked pilot and its club media are not reproduced. TagMAKER 0.1 alpha source and tutorial are public, but its Windows installer is pending. VideoMAKER has no application release. Individual repository licenses govern code reuse; this website does not grant rights to club media or product artwork.
 
 Before public launch, verify the PlayMAKER name, handle and brand rights, review organization policy and add any project-specific contribution and conduct links that are actually available.
