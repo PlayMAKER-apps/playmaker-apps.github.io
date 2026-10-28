@@ -40,12 +40,17 @@ export const products: Product[] = [
   {
     name: 'WebMAKER', slug: 'webmaker', index: '01', eyebrow: 'Your digital home',
     tagline: 'Build and manage your club website.',
-    description: 'A customizable static club site with three themes, sample data, GitHub Pages publishing and a Windows desktop Studio. Version 0.1.0 is the first public release.',
-    status: 'Alpha', statusDetail: '0.1.0 first public release',
+    description: 'A customizable static club site with three themes, sample data, GitHub Pages publishing and a Windows desktop Studio. Version 0.1.1 includes an English guide, demo site, and Studio.',
+    status: 'Alpha', statusDetail: '0.1.1 English release',
     image: '/images/webmaker.webp', accent: 'lime',
     features: ['Static club site with Bold, Classic and Dynamic themes', 'Desktop Studio for local editing and Git publishing', 'News, matches, rosters and statistics', 'Basketball and football profiles with shared data paths'],
-    repoUrl: 'https://github.com/PlayMAKER-apps/webmaker', docsUrl: 'https://github.com/PlayMAKER-apps/webmaker#guida-per-luso', releaseUrl: 'https://github.com/PlayMAKER-apps/webmaker/releases/tag/v0.1.0',
+    repoUrl: 'https://github.com/PlayMAKER-apps/webmaker', docsUrl: 'https://github.com/PlayMAKER-apps/webmaker#user-guide', releaseUrl: 'https://github.com/PlayMAKER-apps/webmaker/releases/tag/v0.1.1',
     versions: [{
+      version: '0.1.1', channel: 'English release',
+      availability: 'Source code and Windows installer available; the installer is unsigned.',
+      downloadUrl: 'https://github.com/PlayMAKER-apps/webmaker/releases/download/v0.1.1/WebMAKER.Studio_0.1.1_x64-setup.exe', releaseUrl: 'https://github.com/PlayMAKER-apps/webmaker/releases/tag/v0.1.1',
+      changes: ['English repository guide and tutorial diagrams.', 'English sample website routes and content, with redirects from earlier routes.', 'English Studio interface and publishing messages.']
+    }, {
       version: '0.1.0', channel: 'First public release',
       availability: 'Source code and Windows installer available; the installer is unsigned.',
       downloadUrl: 'https://github.com/PlayMAKER-apps/webmaker/releases/download/v0.1.0/WebMAKER.Studio_0.1.0_x64-setup.exe', releaseUrl: 'https://github.com/PlayMAKER-apps/webmaker/releases/tag/v0.1.0',
