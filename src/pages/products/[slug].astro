@@ -15,6 +15,7 @@ const isWebmaker = product.slug === 'webmaker';
 const isTagmaker = product.slug === 'tagmaker';
 ---
 <BaseLayout title={product.name} description={`${product.tagline} ${product.statusDetail}.`} path={path}>
+  <div class={`product-theme accent-${product.accent}`}>
   <section class="product-page-hero"><div class="shell product-page-hero-inner">
     <div><a class="back-link" href="/products/">← All products</a><p class="eyebrow">{product.eyebrow}</p><h1>{product.name}</h1><p class="product-page-tagline">{product.tagline}</p><p class="section-lede">{product.description}</p><div class="product-page-actions"><span class="badge">{product.status} · {product.statusDetail}</span>{product.repoUrl && <a class="button button-secondary" href={product.repoUrl} target="_blank" rel="noopener noreferrer">GitHub repository ↗</a>}</div></div>
     <div class="product-page-art"><img src={product.image} alt={`${product.name} artwork`} width="340" height="340" /></div>
@@ -37,4 +38,5 @@ const isTagmaker = product.slug === 'tagmaker';
   {isWebmaker && <section class="page-section" id="sites"><div class="shell"><p class="eyebrow">WebMAKER in use</p><h2 class="section-heading">Sites using<br /><em>WebMAKER.</em></h2><article class="site-using-card"><div><span class="badge">Pilot · beta testing</span><h3>{showcase.name}</h3><p>A real club site using the WebMAKER pilot for news, fixtures, results and statistics.</p></div><div class="site-using-actions"><a class="button button-primary" href={showcase.siteUrl!} target="_blank" rel="noopener noreferrer">Visit the site ↗</a><a class="inline-link" href={showcase.codeUrl} target="_blank" rel="noopener noreferrer">Pilot source ↗</a></div></article></div></section>}
 
   <section class="page-section source-section" id="source"><div class="shell source-inner"><div><p class="eyebrow">Built in the open</p><h2 class="section-heading">Explore the code.</h2><p class="section-lede">{isWebmaker ? 'The WebMAKER repository includes the reusable club starter, three themes, Studio source, format notes, tests and an illustrated guide. Contributions are welcome through Issues and Pull Requests.' : isTagmaker ? 'The TagMAKER repository contains the 0.1 source, complete tutorial, format specification and issue tracker.' : 'The VideoMAKER repository is public; application code and releases are still to come.'}</p></div>{product.repoUrl && <a class="button button-primary" href={product.repoUrl} target="_blank" rel="noopener noreferrer">Open GitHub repository ↗</a>}</div></section>
+  </div>
 </BaseLayout>
