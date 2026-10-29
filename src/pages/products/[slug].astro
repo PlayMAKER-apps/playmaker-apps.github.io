@@ -2,8 +2,9 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import TagmakerTutorial from '../../components/TagmakerTutorial.astro';
 import WebmakerTutorial from '../../components/WebmakerTutorial.astro';
+import PostmakerTutorial from '../../components/PostmakerTutorial.astro';
 import VideomakerTutorial from '../../components/VideomakerTutorial.astro';
-import { products, showcase, type Product } from '../../data/site';
+import { products, showcase, site, type Product } from '../../data/site';
 
 export function getStaticPaths() {
   return products.map((product) => ({ params: { slug: product.slug }, props: { product } }));
@@ -13,11 +14,27 @@ const { product } = Astro.props as { product: Product };
 const path = `/products/${product.slug}/`;
 const isWebmaker = product.slug === 'webmaker';
 const isTagmaker = product.slug === 'tagmaker';
+const isPostmaker = product.slug === 'postmaker';
+const currentVersion = product.versions[0];
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: product.name,
+  description: product.description,
+  applicationCategory: 'SportsApplication',
+  url: new URL(path, site.url).toString(),
+  image: new URL(product.image, site.url).toString(),
+  ...(currentVersion ? { softwareVersion: currentVersion.version } : {}),
+  ...(currentVersion?.downloadUrl ? { operatingSystem: 'Windows x64', downloadUrl: currentVersion.downloadUrl } : {}),
+  ...(product.webAppUrl ? { installUrl: product.webAppUrl, browserRequirements: 'A modern browser; one successful online visit is required before PWA offline use.' } : {}),
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' }
+};
 ---
-<BaseLayout title={product.name} description={`${product.tagline} ${product.statusDetail}.`} path={path}>
+<BaseLayout title={product.name} description={`${product.tagline} ${product.description}`} path={path} image={product.image}>
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   <div class={`product-theme accent-${product.accent}`}>
   <section class="product-page-hero"><div class="shell product-page-hero-inner">
-    <div><a class="back-link" href="/products/">← All products</a><p class="eyebrow">{product.eyebrow}</p><h1>{product.name}</h1><p class="product-page-tagline">{product.tagline}</p><p class="section-lede">{product.description}</p><div class="product-page-actions"><span class="badge">{product.status} · {product.statusDetail}</span>{product.repoUrl && <a class="button button-secondary" href={product.repoUrl} target="_blank" rel="noopener noreferrer">GitHub repository ↗</a>}</div></div>
+    <div><a class="back-link" href="/products/">← All products</a><p class="eyebrow">{product.eyebrow}</p><h1>{product.name}</h1><p class="product-page-tagline">{product.tagline}</p><p class="section-lede">{product.description}</p><div class="product-page-actions"><span class="badge">{product.status} · {product.statusDetail}</span>{product.webAppUrl && <a class="button button-primary" href={product.webAppUrl} target="_blank" rel="noopener noreferrer">Open {product.name} ↗</a>}{product.repoUrl && <a class="button button-secondary" href={product.repoUrl} target="_blank" rel="noopener noreferrer">GitHub repository ↗</a>}</div></div>
     <div class="product-page-art"><img src={product.image} alt={`${product.name} artwork`} width="340" height="340" /></div>
   </div></section>
 
@@ -26,17 +43,17 @@ const isTagmaker = product.slug === 'tagmaker';
   <section class="page-section" id="overview"><div class="shell"><p class="eyebrow">What it does</p><h2 class="section-heading">Built for the<br /><em>work behind the game.</em></h2><div class="feature-list">{product.features.map((feature, i) => <div><span>0{i + 1} /</span><p>{feature}</p></div>)}</div></div></section>
 
   <section class="page-section product-page-section-alt" id="downloads"><div class="shell"><div class="section-top"><div><p class="eyebrow">Get the software</p><h2 class="section-heading">Versions &<br /><em>downloads.</em></h2></div><p class="section-lede">Windows installers appear here only after a release includes a verified executable asset.</p></div>
-    {product.versions.length ? <div class="version-list">{product.versions.map((version) => <article class="version-card"><div><p class="section-kicker">{version.channel}</p><h3>{product.name} {version.version}</h3><p>{version.availability}</p></div><div class="version-actions">{version.downloadUrl ? <a class="button button-primary" href={version.downloadUrl} target="_blank" rel="noopener noreferrer">Download Windows .exe ↗</a> : <span class="download-pending">Windows .exe not published yet</span>}{version.releaseUrl && <a class="inline-link" href={version.releaseUrl} target="_blank" rel="noopener noreferrer">GitHub release notes ↗</a>}</div></article>)}</div> : <div class="empty-release"><strong>No standalone download yet.</strong><p>{isWebmaker ? 'WebMAKER is being tested through the Nerone pilot. A general installer has not been released.' : 'VideoMAKER is in early development. No executable or release version is available.'}</p></div>}
+    {product.versions.length ? <div class="version-list">{product.versions.map((version) => <article class="version-card"><div><p class="section-kicker">{version.channel}</p><h3>{product.name} {version.version}</h3><p>{version.availability}</p>{version.checksum && <p class="checksum"><strong>SHA-256:</strong> {version.checksum}</p>}</div><div class="version-actions">{version.downloadUrl ? <a class="button button-primary" href={version.downloadUrl} target="_blank" rel="noopener noreferrer">Download for Windows (.exe) ↗</a> : <span class="download-pending">Windows .exe not published yet</span>}{version.msiUrl && <a class="inline-link" href={version.msiUrl} target="_blank" rel="noopener noreferrer">Alternative Windows MSI ↗</a>}{version.checksumUrl && <a class="inline-link" href={version.checksumUrl} target="_blank" rel="noopener noreferrer">SHA-256 checksums ↗</a>}{version.releaseUrl && <a class="inline-link" href={version.releaseUrl} target="_blank" rel="noopener noreferrer">GitHub release notes ↗</a>}</div></article>)}</div> : <div class="empty-release"><strong>No standalone download yet.</strong><p>VideoMAKER is in early development. No executable or release version is available.</p></div>}
   </div></section>
 
   <section class="page-section" id="changelog"><div class="shell"><p class="eyebrow">Progress by version</p><h2 class="section-heading">Changelog.</h2>{product.versions.length ? <div class="changelog-list">{product.versions.map((version) => <article><span class="badge">{version.channel}</span><h3>{version.version}</h3><ul>{version.changes.map((change) => <li>{change}</li>)}</ul>{version.releaseUrl && <p><a class="inline-link" href={version.releaseUrl} target="_blank" rel="noopener noreferrer">Read release notes ↗</a></p>}</article>)}</div> : <div class="empty-release"><strong>No standalone release history yet.</strong><p>{isWebmaker ? 'Follow the WebMAKER repository for updates.' : 'Follow the VideoMAKER repository as development begins.'}</p></div>}</div></section>
 
   <section class="page-section product-page-section-alt" id="tutorial"><div class="shell"><p class="eyebrow">How to use it</p><h2 class="section-heading">Tutorial.</h2>
-    {isTagmaker ? <TagmakerTutorial /> : isWebmaker ? <WebmakerTutorial /> : <VideomakerTutorial />}
+    {isTagmaker ? <TagmakerTutorial /> : isWebmaker ? <WebmakerTutorial /> : isPostmaker ? <PostmakerTutorial /> : <VideomakerTutorial />}
   </div></section>
 
   {isWebmaker && <section class="page-section" id="sites"><div class="shell"><p class="eyebrow">WebMAKER in use</p><h2 class="section-heading">Sites using<br /><em>WebMAKER.</em></h2><article class="site-using-card"><div><span class="badge">Pilot · beta testing</span><h3>{showcase.name}</h3><p>A real club site using the WebMAKER pilot for news, fixtures, results and statistics.</p></div><div class="site-using-actions"><a class="button button-primary" href={showcase.siteUrl!} target="_blank" rel="noopener noreferrer">Visit the site ↗</a><a class="inline-link" href={showcase.codeUrl} target="_blank" rel="noopener noreferrer">Pilot source ↗</a></div></article></div></section>}
 
-  <section class="page-section source-section" id="source"><div class="shell source-inner"><div><p class="eyebrow">Built in the open</p><h2 class="section-heading">Explore the code.</h2><p class="section-lede">{isWebmaker ? 'The WebMAKER repository includes the reusable club starter, three themes, Studio source, format notes, tests and an illustrated guide. Contributions are welcome through Issues and Pull Requests.' : isTagmaker ? 'The TagMAKER repository contains the 0.1 source, complete tutorial, format specification and issue tracker.' : 'The VideoMAKER repository is public; application code and releases are still to come.'}</p></div>{product.repoUrl && <a class="button button-primary" href={product.repoUrl} target="_blank" rel="noopener noreferrer">Open GitHub repository ↗</a>}</div></section>
+  <section class="page-section source-section" id="source"><div class="shell source-inner"><div><p class="eyebrow">Built in the open</p><h2 class="section-heading">Explore the code.</h2><p class="section-lede">{isWebmaker ? 'The WebMAKER repository includes the bundled club starter, three themes, Studio source, format notes, tests and Create Club guide.' : isTagmaker ? 'The TagMAKER repository contains the 0.1 source, complete tutorial, format specification and issue tracker.' : isPostmaker ? 'The PostMAKER repository contains the shared React editor, Canvas renderer, PWA, Tauri 2 desktop shell, tests and user guides.' : 'The VideoMAKER repository is public; application code and releases are still to come.'}</p></div>{product.repoUrl && <a class="button button-primary" href={product.repoUrl} target="_blank" rel="noopener noreferrer">Open GitHub repository ↗</a>}</div></section>
   </div>
 </BaseLayout>

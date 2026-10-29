@@ -43,6 +43,7 @@
 /* Product colors follow the artwork. Lighter companion shades keep text legible on black. */
 .accent-webmaker{--product-color:#204a9a;--product-readable:#92aaff;--product-action:#6687ef;--product-border:#5575d6;--product-glow:rgba(32,74,154,.42)}
 .accent-tagmaker{--product-color:#0a721e;--product-readable:#75e38d;--product-action:#62db79;--product-border:#2ba349;--product-glow:rgba(10,114,30,.36)}
+.accent-postmaker{--product-color:#6d28d9;--product-readable:#c4a7ff;--product-action:#a67cff;--product-border:#8b5cf6;--product-glow:rgba(109,40,217,.4)}
 .accent-videomaker{--product-color:#f84c01;--product-readable:#ffae73;--product-action:#ff8a39;--product-border:#dc6a1f;--product-glow:rgba(248,76,1,.31)}
 .product-card:hover{border-color:var(--product-border)}
 .product-card .product-visual{background:radial-gradient(circle at 50% 40%,var(--product-glow),transparent 68%),#111}
@@ -63,3 +64,6 @@
 .product-theme .tutorial-paths a{border-color:var(--product-border);color:var(--product-readable)}
 .product-theme .tutorial-paths a:hover{background:var(--product-glow)}
 .product-theme .version-card,.product-theme .changelog-list article,.product-theme .site-using-card{border-left:3px solid var(--product-border)}
+.product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.checksum{max-width:760px;font-size:11px;overflow-wrap:anywhere}
+@media(max-width:570px){.product-grid{grid-template-columns:1fr}}

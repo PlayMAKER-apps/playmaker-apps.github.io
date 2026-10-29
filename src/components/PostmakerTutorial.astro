@@ -1,0 +1,50 @@
+---
+const guide = '/images/postmaker-guide';
+const app = 'https://playmaker-apps.github.io/postmaker/';
+const exe = 'https://github.com/PlayMAKER-apps/postmaker/releases/download/v0.3.0/PostMAKER_0.3.0_x64-setup.exe';
+const msi = 'https://github.com/PlayMAKER-apps/postmaker/releases/download/v0.3.0/PostMAKER_0.3.0_x64_en-US.msi';
+---
+<div class="tutorial-intro">
+  <p>PostMAKER 0.3.0 is available as an offline-first PWA and a Windows x64 desktop application. Both use the same editor, project schema, templates and rendering core. Core editing requires no account, GitHub login or internet connection.</p>
+  <p><a class="inline-link" href={app} target="_blank" rel="noopener noreferrer">Open PostMAKER ↗</a> · <a class="inline-link" href="https://github.com/PlayMAKER-apps/postmaker/blob/main/docs/user-guide.md" target="_blank" rel="noopener noreferrer">Full user guide ↗</a></p>
+</div>
+
+<nav class="tutorial-paths" aria-label="Choose a tutorial path"><a href="#user-guide">For users: install & use</a><a href="#developer-guide">For contributors & developers</a></nav>
+
+<div class="tutorial-path-heading" id="user-guide"><p class="eyebrow">For users</p><h3>Install & use PostMAKER</h3><p>Start in the browser, install the PWA, or use the Windows desktop app. Keep explicit backups wherever you work.</p></div>
+
+<ol class="tutorial-steps">
+  <li class="tutorial-step">
+    <div class="step-copy"><span class="section-kicker">01 / Choose the app</span><h3>Open the PWA or install Windows</h3><p><a class="inline-link" href={app} target="_blank" rel="noopener noreferrer">Open PostMAKER in your browser ↗</a>. After one complete online visit, use your supported browser's install command to add the PWA. That first successful visit is required before offline use.</p><p>For Windows x64, use the <a class="inline-link" href={exe}>recommended EXE installer ↗</a> or the <a class="inline-link" href={msi}>alternative MSI ↗</a>. The installers are unsigned, so Windows may show <strong>Unknown publisher</strong>. Follow your organization's security policy. Desktop automatic updates are disabled.</p></div>
+    <figure><img src={`${guide}/01-editor.png`} alt="Screenshot of the real PostMAKER PWA welcome screen with Manual mode, WebMAKER import and project backup actions" width="1440" height="1100" loading="lazy" /><figcaption>The PostMAKER 0.3 PWA welcome screen using an empty local project list. Screenshot.</figcaption></figure>
+  </li>
+  <li class="tutorial-step">
+    <div class="step-copy"><span class="section-kicker">02 / Project</span><h3>Create or import a project</h3><p>Choose <strong>Start Manual mode</strong>, name the project and create a graphic in post, story or square format. Choose <strong>Import from WebMAKER</strong> to validate a local public-data JSON file or a public HTTPS source before adding club information and fixtures. PostMAKER does not need GitHub access for either path.</p></div>
+  </li>
+  <li class="tutorial-step">
+    <div class="step-copy"><span class="section-kicker">03 / Brand Kit</span><h3>Set the reusable club identity</h3><p>Add the club name, colors, system fonts, logos, teams, sponsors and other approved assets. Save useful compositions as presets. Add only media you have permission to publish, and record the license or permission for sponsor and brand assets.</p></div>
+  </li>
+  <li class="tutorial-step">
+    <div class="step-copy"><span class="section-kicker">04 / Match graphic</span><h3>Build the composition</h3><p>Add match details and scores, choose a template, then arrange text, image, shape and GLASS layers. Upload a background photograph and adjust its crop, zoom or blur. A transparent subject overlay should use the same source dimensions as the background image so both layers align correctly.</p></div>
+  </li>
+  <li class="tutorial-step">
+    <div class="step-copy"><span class="section-kicker">05 / Export</span><h3>Export the finished PNG</h3><p>The live preview uses the same renderer and dimensions as the PNG export. Export post, story or square graphics. Compatible mobile browsers can open the operating system share sheet; other browsers download the PNG. PostMAKER does not post directly to social networks.</p></div>
+  </li>
+  <li class="tutorial-step">
+    <div class="step-copy"><span class="section-kicker">06 / Backups & offline</span><h3>Keep recoverable project files</h3><p>Browser projects are stored locally in IndexedDB, which can be cleared and is not a permanent backup. Export JSON or ZIP backups regularly. The Windows app adds native file dialogs, explicit project files and PNG export. The same JSON or ZIP project can be opened in the PWA and desktop app.</p><p>Core editing works offline. Remote images and HTTPS WebMAKER refreshes still need a connection. Desktop automatic updates are not enabled, so install future approved releases manually.</p></div>
+  </li>
+</ol>
+
+<div class="tutorial-path-heading" id="developer-guide"><p class="eyebrow">For contributors & developers</p><h3>Improve PostMAKER</h3><p>The public repository contains the shared React editor, Canvas renderer, data connectors, PWA and thin Tauri 2 Windows shell.</p></div>
+<div class="developer-guide-grid">
+  <div class="developer-guide-card"><h4>1. Clone and run the checks</h4><p>Use Node.js 22 or newer. Create a focused branch and keep generated output, personal files and real club data out of commits.</p><pre><code>git clone https://github.com/PlayMAKER-apps/postmaker.git
+cd postmaker
+npm ci
+npm run lint
+npm test
+npm run build</code></pre></div>
+  <div class="developer-guide-card"><h4>2. Test the browser workflow</h4><p>Playwright covers local storage reload, backup import, PNG download, the Pages base path and offline reload. Use fictional projects and licensed or synthetic media.</p><pre><code>npx playwright install chromium
+npm run test:e2e</code></pre></div>
+  <div class="developer-guide-card"><h4>3. Preserve one shared editor</h4><p><code>apps/web</code> serves the browser and Tauri desktop modes. Keep project schema, templates and rendering behavior shared. New stored formats need explicit validation and nondestructive migrations.</p></div>
+  <div class="developer-guide-card"><h4>4. Review data contracts</h4><p>Changes to WebMAKER import must remain compatible with the <a class="inline-link" href="https://github.com/PlayMAKER-apps/playmaker-schema" target="_blank" rel="noopener noreferrer">shared PlayMAKER schema ↗</a>. Open an Issue or pull request with the user workflow, tests and documentation changed together.</p></div>
+</div>
