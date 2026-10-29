@@ -6,10 +6,12 @@ interface Props {
   title: string;
   description: string;
   path?: string;
+  image?: string;
 }
 
-const { title, description, path = '/' } = Astro.props;
+const { title, description, path = '/', image = '/images/playmaker.png' } = Astro.props;
 const canonical = new URL(path, site.url).toString();
+const socialImage = new URL(image, site.url).toString();
 const pageTitle = title === site.name ? `${site.name} | ${site.tagline}` : `${title} | ${site.name}`;
 const nav = [
   { href: '/products/', label: 'Products' },
@@ -30,7 +32,8 @@ const nav = [
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={new URL('/images/playmaker.png', site.url).toString()} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:alt" content={`${title} by ${site.name}`} />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/images/favicon.png" type="image/png" />
